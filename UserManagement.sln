@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Manager", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.WebServices", "UserManagement.WebServices\UserManagement.WebServices.csproj", "{47BE615B-AA5D-4711-9916-D7B0070386AE}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Version6Setup", "Version6Setup\Version6Setup.vdproj", "{3EC650EA-765C-4504-9FFE-DC4B77340AD4}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Version5Setup", "Version5Setup\Version5Setup.vdproj", "{3EC650EA-765C-4504-9FFE-DC4B77340AD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Pushers", "UserManagement.Pusher\UserManagement.Pushers.csproj", "{1EF26281-1BD2-423D-9DF0-5951DA26BBA6}"
 EndProject

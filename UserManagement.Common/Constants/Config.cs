@@ -15,12 +15,12 @@ namespace UserManagement.Common.Constants
     {
         private const string MasterStoreJson = "master-store.data";
         private const string ValidatedUserJson = "validated-user.data";
-        private const string Version6 = "Version6-";
+        private const string Version5 = "Version5-";
         private static CurrentUser _currentUser = GetLocalUser();
         private static MasterStore _masterStore;
 
         public static readonly string AppPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TUCO");
-        public static string FilePath = Path.Combine(AppPath, Version6);
+        public static string FilePath = Path.Combine(AppPath, Version5);
         public static CurrentUser CurrentUser => _currentUser ?? (_currentUser = GetLocalUser());
         public static MasterStore MasterStore => _masterStore ?? (_masterStore = GetLocalMasterStore());
 

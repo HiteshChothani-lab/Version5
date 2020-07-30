@@ -12,7 +12,7 @@ namespace UserManagement.WebServices
     {
         public async Task<ValidateUserResponseContract> ValidateUser(ValidateUserRequestContract reqContract)
         {
-            string endpoint = string.Format("validate_user.php?username={0}&access_code={1}&app_version_name=Version 6", reqContract.Username, reqContract.AccessCode);
+            string endpoint = string.Format("validate_user.php?username={0}&access_code={1}&app_version_name=Version 5", reqContract.Username, reqContract.AccessCode);
             var responseTuple = await GetAsync<ValidateUserResponseContract>(endpoint);
             var resultContract = responseTuple.Item2 ?? new ValidateUserResponseContract();
             resultContract.StatusCode = responseTuple.Item4;
@@ -61,7 +61,7 @@ namespace UserManagement.WebServices
                 $"state={reqContract.State}&" +
                 $"gender={reqContract.Gender}&" +
                 $"dob={reqContract.DOB}&" +
-                $"version=6&" +
+                $"version=5&" +
                 $"action={reqContract.Action}";
 
             var responseTuple = await GetAsync<DefaultResponseContract>(endpoint, Config.CurrentUser.Token);
@@ -94,7 +94,7 @@ namespace UserManagement.WebServices
                 $"city={reqContract.City}&" +
                 $"state={reqContract.State}&" +
                 $"gender={reqContract.Gender}&" +
-                $"version=6&" +
+                $"version=5&" +
                 $"dob={reqContract.DOB}";
 
             var responseTuple = await GetAsync<DefaultResponseContract>(endpoint, Config.CurrentUser.Token);
@@ -124,7 +124,7 @@ namespace UserManagement.WebServices
             string endpoint = $"get_archive_store_users.php?" +
                 $"master_store_id={reqContract.StoreId}&" +
                 $"super_master_id={reqContract.SuperMasterId}&" +
-                $"archive_length=6&" +
+                $"archive_length=5&" +
                 $"current_time={time}";
 
             var responseTuple = await GetAsync<ArchieveStoreUsersResponseContract>(endpoint, Config.CurrentUser.Token);
