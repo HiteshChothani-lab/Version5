@@ -114,6 +114,7 @@
     <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
     <Compile Include="Converters\GenderConverter.cs" />
     <Compile Include="Converters\AMPMColorConverter.cs" />
+    <Compile Include="Converters\OppositeVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="CustomControls\CustomLoader.xaml.cs">
       <DependentUpon>CustomLoader.xaml</DependentUpon>
@@ -133,12 +134,15 @@
     <Compile Include="Events\MoveStoreUserToArchiveSubmitEvent.cs" />
     <Compile Include="Events\NonMobileUserAddEvent.cs" />
     <Compile Include="Events\RegisterStoreUserSubmitEvent.cs" />
+    <Compile Include="Events\RelayCommand.cs" />
+    <Compile Include="ItemModels\FacilityType.cs" />
     <Compile Include="ItemModels\ExpressTimeItemModel.cs" />
     <Compile Include="ItemModels\EditButtonsItemModel.cs" />
     <Compile Include="ItemModels\EditStoreUserItemModel.cs" />
     <Compile Include="ItemModels\MasterStoreItemModel.cs" />
     <Compile Include="ItemModels\MoveStoreUserItemModel.cs" />
     <Compile Include="ItemModels\NonMobileUserItemModel.cs" />
+    <Compile Include="MouseBehaviours\MouseBehaviour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIModule.cs" />
     <Compile Include="ViewModels\Popups\EditButtonsPopupPageViewModel.cs" />
@@ -313,6 +317,9 @@
   <ItemGroup>
     <Resource Include="Assets\nature.png" />
     <Resource Include="Assets\other.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

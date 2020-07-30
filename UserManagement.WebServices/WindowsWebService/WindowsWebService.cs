@@ -37,6 +37,7 @@ namespace UserManagement.WebServices
                 $"device_token={reqContract.DeviceToken}&" +
                 $"device_id={reqContract.DeviceId}&" +
                 $"device_type={reqContract.DeviceType}&" +
+                $"facility_type={reqContract.FacilityType}&" +
                 $"timezone={reqContract.TimeZone}";
 
             var responseTuple = await GetAsync<RegisterMasterStoreResponseContract>(endpoint, Config.CurrentUser.Token);

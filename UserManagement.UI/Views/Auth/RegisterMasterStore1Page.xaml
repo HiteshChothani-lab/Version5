@@ -30,6 +30,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <StackPanel Margin="20,10">
@@ -134,9 +135,24 @@
                         ControlMaxLength="6"
                         Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
+                
+                <StackPanel Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="20,10" HorizontalAlignment="Stretch">
 
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Foreground="#CE6F1D" Text="Type:" />
+
+                    <Border Margin="0,5,0,0" Padding="2" Background="#7ED469" >
+
+                        <ComboBox Height="40" Padding="5" BorderThickness="0" VerticalContentAlignment="Center"
+                              DisplayMemberPath="DisplayName" FontSize="14" ItemsSource="{Binding FacilityTypes}" 
+                              SelectedItem="{Binding SelectedFacilityType}" SelectedIndex="0"/>
+                    </Border>
+                </StackPanel>
+                
                 <StackPanel
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="20,10">

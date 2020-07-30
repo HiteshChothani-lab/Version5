@@ -128,6 +128,7 @@ namespace UserManagement.Common.Constants
         public string Street { get; set; }
         public string Country { get; set; }
         public long CountryCode { get; set; }
+        public string FacilityType { get; set; }
         public string Status { get; set; }
         public string Messagee { get; set; }
     }

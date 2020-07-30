@@ -25,6 +25,7 @@ namespace UserManagement.UI.ViewModels
 
             this.CancelCommand = new DelegateCommand(() => ExecuteCancelCommand());
             this.SubmitCommand = new DelegateCommand(async () => await ExecuteSubmitCommand());
+            this.ToggleButtonCommand = new DelegateCommand<string>((item) => ExecuteToggleButtonCommand(item));
         }
 
         private StoreUserEntity _selectedStoreUser;
@@ -50,78 +51,124 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _isUserTypeNonMobile, value);
         }
 
-        private bool _isCheckedButtonA;
-        public bool IsCheckedButtonA
+        private bool _button1;
+        public bool Button1
         {
-            get => _isCheckedButtonA;
-            set => SetProperty(ref _isCheckedButtonA, value);
+            get => _button1;
+            set => SetProperty(ref _button1, value);
         }
 
-        private bool _isCheckedButtonB;
-        public bool IsCheckedButtonB
+        private bool _button2;
+        public bool Button2
         {
-            get => _isCheckedButtonB;
-            set => SetProperty(ref _isCheckedButtonB, value);
+            get => _button2;
+            set => SetProperty(ref _button2, value);
         }
 
-        private bool _isCheckedButtonC;
-        public bool IsCheckedButtonC
+        private bool _button3;
+        public bool Button3
         {
-            get => _isCheckedButtonC;
-            set => SetProperty(ref _isCheckedButtonC, value);
+            get => _button3;
+            set => SetProperty(ref _button3, value);
         }
 
-        private bool _isCheckedButtonD;
-        public bool IsCheckedButtonD
+        private bool _button4;
+        public bool Button4
         {
-            get => _isCheckedButtonD;
-            set => SetProperty(ref _isCheckedButtonD, value);
+            get => _button4;
+            set => SetProperty(ref _button4, value);
         }
 
-        private bool _serviceUsedStatusYes = true;
-        public bool ServiceUsedStatusYes
+        private bool _button5;
+        public bool Button5
         {
-            get => _serviceUsedStatusYes;
-            set => SetProperty(ref _serviceUsedStatusYes, value);
+            get => _button5;
+            set => SetProperty(ref _button5, value);
         }
 
-        private bool _serviceUsedStatusNo;
-        public bool ServiceUsedStatusNo
+        private bool _button6;
+        public bool Button6
         {
-            get => _serviceUsedStatusNo;
-            set => SetProperty(ref _serviceUsedStatusNo, value);
+            get => _button6;
+            set => SetProperty(ref _button6, value);
         }
 
-        private string _question1;
-        public string Question1
+        private bool _button7;
+        public bool Button7
         {
-            get => _question1;
-            set => SetProperty(ref _question1, value);
+            get => _button7;
+            set => SetProperty(ref _button7, value);
         }
 
-        private string _question2;
-        public string Question2
+        private bool _button8;
+        public bool Button8
         {
-            get => _question2;
-            set => SetProperty(ref _question2, value);
+            get => _button8;
+            set => SetProperty(ref _button8, value);
         }
 
-        private string _question3;
-        public string Question3
+        private string _otherNumber;
+        public string OtherNumber
         {
-            get => _question3;
-            set => SetProperty(ref _question3, value);
+            get => _otherNumber;
+            set
+            {
+                SetProperty(ref _otherNumber, value);
+
+                if (!string.IsNullOrWhiteSpace(value))
+                    ExecuteToggleButtonCommand("0");
+            }
         }
 
-        private string _question4;
-        public string Question4
-        {
-            get => _question4;
-            set => SetProperty(ref _question4, value);
-        }
+        public string TableNumber { get; set; } = string.Empty;
 
         public DelegateCommand CancelCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
+        public DelegateCommand<string> ToggleButtonCommand { get; private set; }
+
+        private void ExecuteToggleButtonCommand(string parameter)
+        {
+            if (string.IsNullOrEmpty(parameter) && !int.TryParse(parameter, out _))
+                return;
+
+            TableNumber = parameter;
+
+            if (!"0".Equals(parameter))
+                OtherNumber = string.Empty;
+            else
+                TableNumber = string.Empty;
+
+            switch (Convert.ToInt32(parameter))
+            {
+                case 1:
+                    Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 2:
+                    Button1 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 3:
+                    Button1 = Button2 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 4:
+                    Button1 = Button2 = Button3 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 5:
+                    Button1 = Button2 = Button3 = Button4 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 6:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button7 = Button8 = false;
+                    break;
+                case 7:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button8 = false;
+                    break;
+                case 8:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = false;
+                    break;
+                default:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+            }
+        }
 
         private void ExecuteCancelCommand()
         {
@@ -132,9 +179,9 @@ namespace UserManagement.UI.ViewModels
 
         private async Task ExecuteSubmitCommand()
         {
-            if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD)
+            if (string.IsNullOrWhiteSpace(TableNumber) && string.IsNullOrWhiteSpace(OtherNumber))
             {
-                MessageBox.Show("You must make a selection for Auto or Health Science or Nature or Other or all.", "Required.");
+                MessageBox.Show("Please choice a number or put number in the text box.", "Required.");
                 return;
             }
 
@@ -146,40 +193,7 @@ namespace UserManagement.UI.ViewModels
                 Action = this.IsSelectedStoreUser ? "update_buttons" : "update_buttons_archive"
             };
 
-            reqEntity.Button1 = string.Empty;
-            reqEntity.Button2 = string.Empty;
-            reqEntity.Button3 = string.Empty;
-            reqEntity.Button4 = string.Empty;
-            reqEntity.Question1 = string.Empty;
-            reqEntity.Question2 = string.Empty;
-            reqEntity.Question3 = string.Empty;
-            reqEntity.Question4 = string.Empty;
-
-            if (this.IsCheckedButtonA)
-            {
-                reqEntity.Button1 = "Auto";
-            }
-
-            if (this.IsCheckedButtonB)
-            {
-                reqEntity.Button2 = "Health Science";
-            }
-
-            if (this.IsCheckedButtonD)
-            {
-                reqEntity.Button3 = "Other";
-            }
-
-            if (this.IsCheckedButtonC)
-            {
-                reqEntity.Button4 = "Nature";
-            }
-
-            reqEntity.ServiceUsedStatus = this.ServiceUsedStatusYes ? "Yes" : "No";
-            reqEntity.Question1 = this.Question1;
-            reqEntity.Question2 = this.Question2;
-            reqEntity.Question3 = this.Question3;
-            reqEntity.Question4 = this.Question4;
+            reqEntity.Button1 = string.IsNullOrWhiteSpace(TableNumber) ? OtherNumber : TableNumber;
 
             var result = await _windowsManager.UpdateButtons(reqEntity);
 
@@ -217,45 +231,55 @@ namespace UserManagement.UI.ViewModels
             SetUnsetProperties();
 
             if (navigationContext.Parameters[NavigationConstants.SelectedStoreUser] is StoreUserEntity selectedStoreUser)
-            {
                 SelectedStoreUser = selectedStoreUser;
-            }
 
             if (navigationContext.Parameters[NavigationConstants.IsSelectedStoreUser] is bool isSelectedStoreUser)
-            {
                 IsSelectedStoreUser = isSelectedStoreUser;
-            }
 
-            this.IsCheckedButtonA = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn1);
-            this.IsCheckedButtonB = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn2);
-            this.IsCheckedButtonC = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn4);
-            this.IsCheckedButtonD = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn3);
+            if (!string.IsNullOrWhiteSpace(SelectedStoreUser.Btn1) && int.TryParse(SelectedStoreUser.Btn1, out int val))
+                SelectButtons(SelectedStoreUser.Btn1);
+        }
 
-            if ("Yes".Equals(SelectedStoreUser.ServiceUsedStatus))
+        private void SelectButtons(string val)
+        {
+            TableNumber = val;
+
+            switch (Convert.ToInt32(val))
             {
-                this.ServiceUsedStatusYes = true;
-                this.ServiceUsedStatusNo = false;
+                case 1:
+                    Button1 = true;
+                    break;
+                case 2:
+                    Button2 = true;
+                    break;
+                case 3:
+                    Button3 = true;
+                    break;
+                case 4:
+                    Button4 = true;
+                    break;
+                case 5:
+                    Button5 = true;
+                    break;
+                case 6:
+                    Button6 = true;
+                    break;
+                case 7:
+                    Button7 = true;
+                    break;
+                case 8:
+                    Button8 = true;
+                    break;
+                default:
+                    OtherNumber = val;
+                    break;
             }
-            else if ("No".Equals(SelectedStoreUser.ServiceUsedStatus))
-            {
-                this.ServiceUsedStatusYes = false;
-                this.ServiceUsedStatusNo = true;
-            }
-            else
-            {
-                this.ServiceUsedStatusYes = true;
-            }
-
-            this.Question1 = SelectedStoreUser.Question1;
-            this.Question2 = SelectedStoreUser.Question2;
-            this.Question3 = SelectedStoreUser.Question3;
-            this.Question4 = SelectedStoreUser.Question4;
-
         }
 
         private void SetUnsetProperties()
         {
-            this.IsCheckedButtonA = this.IsCheckedButtonB = this.IsCheckedButtonC = this.IsCheckedButtonD = false;
+            Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+            OtherNumber = TableNumber = string.Empty;
             this.IsUserTypeMobile = false;
             this.IsUserTypeNonMobile = false;
             this.IsSelectedStoreUser = false;

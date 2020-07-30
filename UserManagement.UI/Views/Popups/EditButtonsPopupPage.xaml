@@ -36,207 +36,130 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <ToggleButton Grid.Row="0" Margin="2,5"
-                                      IsChecked="{Binding IsCheckedButtonA}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+            <ToggleButton Grid.Column="1" Margin="7,10" IsChecked="{Binding Button1}" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/wheel.png" />
-                        <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="AUTO"/>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="1"/>
                     </Grid>
                 </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="1" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ToggleButton>
-
-            <ToggleButton Grid.Row="0" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonB}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+            <ToggleButton Grid.Column="2" Margin="7,10" IsChecked="{Binding Button2}" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/science.png" />
-                        <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Margin="32,0,0,0"
-                                               Text="HEALTH SCIENCE"/>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="2"/>
                     </Grid>
                 </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="2" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ToggleButton>
-
-            <ToggleButton Grid.Row="0" Grid.Column="2"  Margin="2,5"
-                                      IsChecked="{Binding IsCheckedButtonC}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+            <ToggleButton Grid.Column="3" Margin="7,10" IsChecked="{Binding Button3}" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/nature.png" />
-                        <TextBlock VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="NATURE"/>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="3"/>
                     </Grid>
                 </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="3" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ToggleButton>
-
-            <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonD}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+            <ToggleButton Grid.Column="4" Margin="7,10" IsChecked="{Binding Button4}" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/other.png" />
-                        <TextBlock VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="OTHER"/>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="4"/>
                     </Grid>
                 </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="4" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ToggleButton>
+            <ToggleButton Grid.Column="5" Margin="7,10" IsChecked="{Binding Button5}" Style="{StaticResource RoundToggleButtonStyle}">
+                <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="5"/>
+                    </Grid>
+                </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="5" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ToggleButton>
+            <ToggleButton Grid.Column="6" Margin="7,10" IsChecked="{Binding Button6}" Style="{StaticResource RoundToggleButtonStyle}">
+                <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="6"/>
+                    </Grid>
+                </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="6" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ToggleButton>
+            <ToggleButton Grid.Column="7" Margin="7,10" IsChecked="{Binding Button7}" Style="{StaticResource RoundToggleButtonStyle}">
+                <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="7"/>
+                    </Grid>
+                </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="7" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ToggleButton>
+            <ToggleButton Grid.Column="8" Margin="7,10" IsChecked="{Binding Button8}" Style="{StaticResource RoundToggleButtonStyle}">
+                <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="8"/>
+                    </Grid>
+                </ToggleButton.Content>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="8" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ToggleButton>
+            <ctrl:CustomTextBox Grid.Column="9" Background="White" Placeholder="Other" Text="{Binding OtherNumber}" 
+                                ControlMaxLength="3" IsNumeric="True" ControlFontSize="20" Margin="0,5" />
 
-            <Grid Grid.Row="2"
-                          Grid.Column="0" Grid.ColumnSpan="4" Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <TextBlock FontSize="14" VerticalAlignment="Center"
-                           Foreground="#00167E"
-                           FontWeight="Bold"
-                           Text="Have you used our services in the past 90 days?" />
-                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,5">
-                    <Viewbox Height="20">
-                        <RadioButton
-                                    Content="Yes"
-                                    Foreground="#00167E"
-                                    GroupName="ServiceStatus"
-                                    IsChecked="{Binding ServiceUsedStatusYes, FallbackValue=true}" />
-                    </Viewbox>
-                    <Viewbox Height="20" Margin="10,0">
-                        <RadioButton
-                                    Content="No"
-                                    Foreground="#00167E"
-                                    GroupName="ServiceStatus"
-                                    IsChecked="{Binding ServiceUsedStatusNo}" />
-                    </Viewbox>
-                </StackPanel>
-
-                <TextBlock Grid.Row="1" FontSize="14" VerticalAlignment="Center"
-                           Foreground="#00167E"
-                           FontWeight="Bold"
-                           Text="What is your favorite color?" />
-                <ctrl:CustomTextBox Grid.Row="1" Grid.Column="1"
-                                    Margin="0,5"
-                                    Height="30"
-                                    Background="White"
-                                    Placeholder=""
-                                    Text="{Binding Question1, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="2" FontSize="14" VerticalAlignment="Center"
-                           Foreground="#00167E"
-                           FontWeight="Bold"
-                           Text="What is your favorite sport?" />
-                <ctrl:CustomTextBox Grid.Row="2" Grid.Column="1"
-                                    Margin="0,5"
-                                    Height="30"
-                                    Background="White"
-                                    Placeholder=""
-                                    Text="{Binding Question2, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="3" FontSize="14" VerticalAlignment="Center"
-                           Foreground="#00167E"
-                           FontWeight="Bold"
-                           Text="Please tell us in 3 words what is the specific reason: " />
-                <ctrl:CustomTextBox Grid.Row="3" Grid.Column="1"
-                                    Margin="0,5"
-                                    Height="30"
-                                    Background="White"
-                                    Placeholder=""
-                                    Text="{Binding Question3, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="4" FontSize="14" VerticalAlignment="Center"
-                           Foreground="#00167E"
-                           FontWeight="Bold"
-                           Text="What is your favorite ice cream flavor?" />
-                <ctrl:CustomTextBox Grid.Row="4" Grid.Column="1"
-                                    Margin="0,5"
-                                    Height="30"
-                                    Background="White"
-                                    Placeholder=""
-                                    Text="{Binding Question4, UpdateSourceTrigger=PropertyChanged}" />
-
-            </Grid>
-
-            <Grid Grid.Row="3"
-                          Grid.Column="0" Grid.ColumnSpan="4"
-                Margin="20,10">
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="11" Margin="20,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button
-                            Grid.Column="0"
-                            Margin="5,10,10,0"
-                            Background="#F82032"
-                            Command="{Binding CancelCommand}"
-                            Content="CANCEL"
-                            Foreground="White"
-                            Style="{StaticResource RoundButtonNoHoverStyle}" />
+                <Button Grid.Column="0" Margin="5,10,10,0" Background="#F82032" Command="{Binding CancelCommand}"
+                            Content="CANCEL" Foreground="White" Style="{StaticResource RoundButtonNoHoverStyle}" />
 
-                <Button
-                            Grid.Column="1"
-                            Margin="10,10,5,0"
-                            Background="#00167E"
-                            Command="{Binding SubmitCommand}"
-                            Content="OK"
-                            Foreground="White"
-                            Style="{StaticResource RoundButtonNoHoverStyle}" />
+                <Button Grid.Column="1" Margin="10,10,5,0" Background="#00167E" Command="{Binding SubmitCommand}"
+                            Content="OK" Foreground="White" Style="{StaticResource RoundButtonNoHoverStyle}" />
             </Grid>
         </Grid>
     </Grid>

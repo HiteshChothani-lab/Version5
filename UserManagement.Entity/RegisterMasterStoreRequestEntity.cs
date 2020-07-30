@@ -24,5 +24,6 @@ namespace UserManagement.Entity
 		public string DeviceId { get; set; }
         public string TimeZone { get; set; }
         public string DeviceType { get; set; }
-	}
+        public string FacilityType { get; set; }
+    }
 }

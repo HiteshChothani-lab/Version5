@@ -11,9 +11,10 @@
 
     <converters:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter" />
     <converters:VisibilityConverter x:Key="VisibilityConverter" />
+    <converters:OppositeVisibilityConverter x:Key="OppositeVisibilityConverter" />
     <converters:GenderConverter x:Key="GenderConverter" />
     <converters:AMPMColorConverter x:Key="AMPMColorConverter" />
-
+    
     <Style x:Key="RoundTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="White" />
         <Setter Property="BorderBrush" Value="#7ED469" />

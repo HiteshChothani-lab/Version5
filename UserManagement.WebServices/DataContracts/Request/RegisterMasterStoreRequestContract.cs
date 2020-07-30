@@ -24,5 +24,6 @@ namespace UserManagement.WebServices.DataContracts.Request
 		public string DeviceId { get; set; }
 		public string DeviceType { get; set; }
         public string TimeZone { get; set; }
+        public string FacilityType { get; set; }
     }
 }

@@ -75,52 +75,18 @@ namespace UserManagement.Entity
             get { return string.IsNullOrWhiteSpace(this.PostalCode) ? false : Regex.IsMatch(this.PostalCode, "^[0-9]{5}$"); }
         }
 
-        public string Column1DisplayImageLeft
+        public string Column1DisplayTextCenter
         {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(this.Btn3))
-                {
-                    return "/UserManagement.UI;component/Assets/other.png";
-                }
-
-                return string.Empty;
-            }
+            get { return Btn1; }
         }
 
-        public string Column1DisplayImageCenterTop
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(this.Btn4))
-                {
-                    return "/UserManagement.UI;component/Assets/nature.png";
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public string Column1DisplayImageCenterBottom
+        public string Column1DisplayImageCenter
         {
             get
             {
                 if (!string.IsNullOrWhiteSpace(this.Btn1))
                 {
-                    return "/UserManagement.UI;component/Assets/wheel.png";
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public string Column1DisplayImageRight
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(this.Btn2))
-                {
-                    return "/UserManagement.UI;component/Assets/science.png";
+                    return "/UserManagement.UI;component/Assets/table.png";
                 }
 
                 return string.Empty;
@@ -212,22 +178,6 @@ namespace UserManagement.Entity
         public string TimeDifferenceColor
         {
             get => ColorNames.Yellow;
-        }
-
-        public bool IsColumn1DisplayImageCenterTop
-        {
-            get
-            {
-                return !string.IsNullOrWhiteSpace(this.Column1DisplayImageCenterTop);
-            }
-        }
-
-        public bool IsColumn1DisplayImageCenterBottom
-        {
-            get
-            {
-                return !string.IsNullOrWhiteSpace(this.Column1DisplayImageCenterBottom);
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

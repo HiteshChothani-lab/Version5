@@ -16,6 +16,7 @@ namespace UserManagement.UI.ItemModels
 		public string PhoneNumber { get; set; }
 		public string Street { get; set; }
 		public string Address { get; set; }
+		public string FacilityType { get; set; }
 
 		public string CityFull
 		{
@@ -25,5 +26,5 @@ namespace UserManagement.UI.ItemModels
 		{
 			get => $"{Street}, {Address}";
 		}
-	}
+    }
 }

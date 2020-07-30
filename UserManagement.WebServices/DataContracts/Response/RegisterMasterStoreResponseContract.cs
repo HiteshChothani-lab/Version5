@@ -19,6 +19,9 @@ namespace UserManagement.WebServices.DataContracts.Response
 		[JsonProperty("store_name")]
 		public string StoreName { get; set; }
 
+		[JsonProperty("facility_type")]
+		public string FacilityType { get; set; }
+
 		[JsonProperty("phone")]
 		public string Phone { get; set; }
 

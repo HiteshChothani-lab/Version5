@@ -27,7 +27,14 @@ namespace UserManagement.UI.ViewModels
                 .ObservesProperty(() => this.SelectedCountry)
                 .ObservesProperty(() => this.SelectedState)
                 .ObservesProperty(() => this.SelectedCity)
+                .ObservesProperty(() => SelectedFacilityType)
                 .ObservesProperty(() => this.PostalCode);
+
+            FacilityTypes = new List<FacilityType>()
+            {
+                new FacilityType() { DisplayName = "(A) Restaurant", Value = "Restaurant", ID = 1 },
+                new FacilityType() { DisplayName = "(B) Queue", Value = "Queue", ID = 2 }
+            };
         }
 
         private bool _canExecuteSubmitCommand = true;
@@ -113,6 +120,20 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _timeZones, value);
         }
 
+        private List<FacilityType> _facilityTypes;
+        public List<FacilityType> FacilityTypes
+        {
+            get => _facilityTypes;
+            set => SetProperty(ref _facilityTypes, value);
+        }
+
+        private FacilityType _selectedFacilityType;
+        public FacilityType SelectedFacilityType
+        {
+            get => _selectedFacilityType;
+            set => SetProperty(ref _selectedFacilityType, value);
+        }
+
         public DelegateCommand CountriesSelectionChangedCommand { get; private set; }
         public DelegateCommand StatesSelectionChangedCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
@@ -165,6 +186,7 @@ namespace UserManagement.UI.ViewModels
                 this.MasterStore.PostalCode = this.PostalCode;
                 this.MasterStore.TimeZone = this.SelectedTimeZone.BaseUtcOffset.ToString();
                 this.MasterStore.TimeZoneDisplayName = $"{this.SelectedTimeZone.BaseUtcOffset.ToString()} {this.SelectedTimeZone.StandardName}";
+                MasterStore.FacilityType = SelectedFacilityType.Value;
 
                 parameters.Add(NavigationConstants.MasterStoreModel, this.MasterStore);
 

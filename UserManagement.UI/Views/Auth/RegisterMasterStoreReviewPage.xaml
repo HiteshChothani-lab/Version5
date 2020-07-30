@@ -99,6 +99,19 @@
                                Foreground="#7ED469"
                                Text="{Binding MasterStore.PhoneNumber}" />
                 </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="Type: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.FacilityType}" />
+                </StackPanel>
 
                 <TextBlock HorizontalAlignment="Center"
                            FontFamily="{StaticResource AntonFontFamily}"

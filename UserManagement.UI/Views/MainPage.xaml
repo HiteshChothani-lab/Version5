@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
              x:Name="MainPage1"
-             d:DesignHeight="720"
-             d:DesignWidth="640"
+             d:DesignHeight="720" d:DesignWidth="640"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
 
@@ -20,8 +18,7 @@
             <RowDefinition Height="0.8*" />
         </Grid.RowDefinitions>
 
-        <Grid Margin="5,1,5,1"
-              Background="#E5E7F3">
+        <Grid Margin="5,1,5,1" Background="#E5E7F3">
             <Grid Margin="5,1,5,1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -38,51 +35,23 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <ctrl:CustomTextBox Background="White"
-                                    Height="40"
-                                    ControlMaxLength="20"
-                                    Placeholder="First Name"
-                                    Text="{Binding FirstName}" />
-                <ctrl:CustomTextBox Grid.Column="2"
-                                    Height="40"
-                                    ControlMaxLength="20"
-                                    Background="White"
-                                    Placeholder="Last Name"
-                                    Text="{Binding LastName}" />
-                <ctrl:CustomTextBox Grid.Column="4"
-                                    Height="40"
-                                    Background="White"
-                                    Placeholder="Mobile Number"
-                                    Text="{Binding MobileNumber}" 
-                                    ControlMaxLength="10"
-                                    IsNumeric="True" />
+                <ctrl:CustomTextBox Background="White" Height="40" ControlMaxLength="20" Placeholder="First Name" Text="{Binding FirstName}" />
+                <ctrl:CustomTextBox Grid.Column="2" Height="40" ControlMaxLength="20" Background="White" Placeholder="Last Name" Text="{Binding LastName}" />
+                <ctrl:CustomTextBox Grid.Column="4" Height="40" Background="White" Placeholder="Mobile Number" Text="{Binding MobileNumber}" ControlMaxLength="10" IsNumeric="True" />
 
                 <Grid Grid.Column="6">
-                    <Button Margin="0,0,2,0"
-                        Command="{Binding AddUserCommand}"
-                        Content="ADD" />
+                    <Button Margin="0,0,2,0" Command="{Binding AddUserCommand}" Content="ADD" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="4">
-                    <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="16"
-                        Command="{Binding NonMobileUserCommand}"
-                        Content="Non Mobile"
+                    <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="14" Command="{Binding DummyUserCommand}" Content="Dummy Reference"
                         Style="{StaticResource RoundButtonStyle}" />
                 </Grid>
 
-                <Button Grid.Row="1"
-                        Grid.Column="6"
-                        Margin="0,10"
-                        VerticalAlignment="Center"
-                        Command="{Binding LogoutCommand}"
-                        Content="LOGOUT" 
-                        Visibility="Collapsed"/>
+                <Button Grid.Row="1" Grid.Column="6" Margin="0,10" VerticalAlignment="Center" Command="{Binding LogoutCommand}"
+                        Content="LOGOUT" Visibility="Collapsed"/>
 
-                <Button Grid.Row="1"
-                        Grid.Column="6"
-                        VerticalAlignment="Center"
-                        Command="{Binding RefreshDataCommand}"
-                        Content="REFRESH" 
-                        Visibility="Visible"/>
+                <Button Grid.Row="1" Grid.Column="6" VerticalAlignment="Center" Command="{Binding RefreshDataCommand}" 
+                        Content="REFRESH" Visibility="Visible"/>
 
                 <Grid Grid.Row="2"
                       Grid.ColumnSpan="7">
@@ -90,113 +59,135 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <ToggleButton Grid.Row="0" Margin="0,5"
-                                      IsChecked="{Binding IsCheckedButtonA}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+                    <ToggleButton Grid.Column="1" Margin="7,10" IsChecked="{Binding Button1}" 
+                                  Style="{StaticResource RoundToggleButtonStyle}">
                         <ToggleButton.Content>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/wheel.png" />
-                                <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="AUTO"/>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="1"/>
                             </Grid>
                         </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="1" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ToggleButton>
-
-                    <ToggleButton Grid.Row="0" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonB}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+                    <ToggleButton Grid.Column="2" Margin="7,10" IsChecked="{Binding Button2}" Style="{StaticResource RoundToggleButtonStyle}">
                         <ToggleButton.Content>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/science.png" />
-                                    <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Margin="32,0,0,0"
-                                               Text="HEALTH SCIENCE"/>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="2"/>
                             </Grid>
                         </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="2" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ToggleButton>
-
-                    <ToggleButton Grid.Row="0" Grid.Column="2"  Margin="0,5"
-                                      IsChecked="{Binding IsCheckedButtonC}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+                    <ToggleButton Grid.Column="3" Margin="7,10" IsChecked="{Binding Button3}" Style="{StaticResource RoundToggleButtonStyle}">
                         <ToggleButton.Content>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/nature.png" />
-                                <TextBlock VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="NATURE"/>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="3"/>
                             </Grid>
                         </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="3" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ToggleButton>
-                    
-                    <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonD}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+                    <ToggleButton Grid.Column="4" Margin="7,10" IsChecked="{Binding Button4}" Style="{StaticResource RoundToggleButtonStyle}">
                         <ToggleButton.Content>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/other.png" />
-                                <TextBlock VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="OTHER"/>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="4"/>
                             </Grid>
                         </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="4" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ToggleButton>
+                    <ToggleButton Grid.Column="5" Margin="7,10" IsChecked="{Binding Button5}" Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="5"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="5" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ToggleButton>
+                    <ToggleButton Grid.Column="6" Margin="7,10" IsChecked="{Binding Button6}" Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="6"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="6" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ToggleButton>
+                    <ToggleButton Grid.Column="7" Margin="7,10" IsChecked="{Binding Button7}" Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="7"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="7" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ToggleButton>
+                    <ToggleButton Grid.Column="8" Margin="7,10" IsChecked="{Binding Button8}" Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="8"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" 
+                                                       CommandParameter="8" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ToggleButton>
+                    <ctrl:CustomTextBox Grid.Column="9" Background="White" Placeholder="Other" Text="{Binding OtherNumber}" 
+                                        ControlMaxLength="3" IsNumeric="True" ControlFontSize="20" Margin="0,5" />
                 </Grid>
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="1"
-              Margin="5,2,5,1"
-              Background="#E5E7F3">
+        <Grid Grid.Row="1" Margin="5,2,5,1" Background="#E5E7F3">
             <Grid Margin="0,2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0"
-                      Margin="5,0"
-                      Background="#00167E">
+                <Grid Grid.Row="0" Margin="5,0" Background="#00167E">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -205,35 +196,19 @@
                         <ColumnDefinition Width="0.5*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="1"
-                               Margin="0,2"
-                               Style="{StaticResource TableHeaderTextBlockStyle}"
-                               Text="Name" />
+                    <TextBlock Grid.Column="1" Margin="0,2" Style="{StaticResource TableHeaderTextBlockStyle}" Text="Name" />
 
-                    <TextBlock Grid.Column="2"
-                               Margin="0,2"
-                               Style="{StaticResource TableHeaderTextBlockStyle}"
-                               Text="Mobile" />
+                    <TextBlock Grid.Column="2" Margin="0,2" Style="{StaticResource TableHeaderTextBlockStyle}" Text="Mobile" />
 
-                    <TextBlock Grid.Column="3"
-                               Margin="0,2"
-                               Style="{StaticResource TableHeaderTextBlockStyle}"
-                               Text="Action" />
+                    <TextBlock Grid.Column="3" Margin="0,2" Style="{StaticResource TableHeaderTextBlockStyle}" Text="Action" />
                 </Grid>
 
-                <Grid Grid.Row="1"
-                      Margin="5,0">
-                    <ListView x:Name="MainTableListView" 
-                              VerticalAlignment="Bottom"
-                              HorizontalContentAlignment="Stretch"
-                              VerticalContentAlignment="Bottom"
-                              Background="Transparent"
-                              ItemsSource="{Binding StoreUsers}"
-                              ScrollViewer.CanContentScroll="False">
+                <Grid Grid.Row="1" Margin="5,0">
+                    <ListView x:Name="MainTableListView" VerticalAlignment="Bottom" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Bottom"
+                              Background="Transparent" ItemsSource="{Binding StoreUsers}" ScrollViewer.CanContentScroll="False">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="0"
-                                      Background="White">
+                                <Grid Margin="0" Background="White">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
@@ -241,35 +216,19 @@
                                         <ColumnDefinition Width="0.5*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Border BorderBrush="#00167E"
-                                            BorderThickness="1">
-                                        <Grid Margin="2,0,2,2">
-                                            <Grid Margin="0,3,0,0"
-                                                  VerticalAlignment="Center">
-                                                <Image Width="40"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Left"
-                                                       VerticalAlignment="Center"
-                                                       Source="{Binding Column1DisplayImageLeft}"
-                                                       Stretch="Uniform" />
-                                                <StackPanel Width="40" HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center">
-                                                    <Image Width="40"
-                                                       Margin="0"
-                                                       Source="{Binding Column1DisplayImageCenterTop}"
-                                                       Stretch="Uniform" />
-                                                    <Image Width="40"
-                                                       Margin="0"
-                                                       Source="{Binding Column1DisplayImageCenterBottom}"
-                                                       Stretch="Uniform" />
-                                                </StackPanel>
-                                                
-                                                <Image Width="40"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Right"
-                                                       VerticalAlignment="Center"
-                                                       Source="{Binding Column1DisplayImageRight}"
-                                                       Stretch="Uniform" />
+                                    <Border BorderBrush="#00167E" BorderThickness="1">
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <Grid Visibility="{Binding ElementName=MainPage1, Path=DataContext.IsTableVisible, Converter={StaticResource VisibilityConverter}}">
+                                                <Image Width="80" Margin="0,0,0,-7" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                                       Source="{Binding Column1DisplayImageCenter}" Stretch="Uniform" />
+                                                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40"
+                                                           Text="{Binding Column1DisplayTextCenter}" Foreground="#00167E"
+                                                           Style="{StaticResource TableHeaderTextBlockStyle}" Margin="0,-8,0,0"/>
+                                            </Grid>
+                                            <Grid Visibility="{Binding ElementName=MainPage1, Path=DataContext.IsTableVisible, Converter={StaticResource OppositeVisibilityConverter}}">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"
+                                                           Text="{Binding Column1DisplayTextCenter}" Foreground="#00167E"
+                                                           Style="{StaticResource TableHeaderTextBlockStyle}"/>
                                             </Grid>
                                             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#02FFFFFF">
                                                 <i:Interaction.Triggers>
@@ -282,18 +241,11 @@
                                         </Grid>
                                     </Border>
 
-                                    <Border Grid.Column="1"
-                                            BorderBrush="#00167E"
-                                            BorderThickness="1"
-                                            Background="{Binding Column2RowColor}">
-                                        <Grid Margin="5" >
+                                    <Border Grid.Column="1" BorderBrush="#00167E" BorderThickness="1" Background="{Binding Column2RowColor}">
+                                        <Grid Margin="5">
                                             <Grid>
-                                                <TextBlock HorizontalAlignment="Right"
-                                                           VerticalAlignment="Top"
-                                                           FontSize="16"
-                                                           FontWeight="Bold"
-                                                           Foreground="#ffffff"
-                                                           Text="{Binding Column2NewOrIdrDisplay}">
+                                                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" 
+                                                           Foreground="#ffffff" Text="{Binding Column2NewOrIdrDisplay}">
                                                     <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.StoreIDCheckedCommand, Mode=OneWay}"
@@ -302,39 +254,24 @@
                                                 </i:Interaction.Triggers>
                                                 </TextBlock>
 
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Right"
-                                                       VerticalAlignment="Top"
-                                                       Source="{Binding Column2IDRDisplayImage}"
-                                                       Stretch="Uniform" />
-
+                                                <Image Width="25" Height="25" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                       Source="{Binding Column2IDRDisplayImage}" Stretch="Uniform" />
                                             </Grid>
 
-                                            <Grid Margin="0,10,0,5"
-                                                  VerticalAlignment="Stretch">
+                                            <Grid Margin="0,10,0,5" VerticalAlignment="Stretch">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.UserDetailWindowCommand, Mode=OneWay}"
                                                                                CommandParameter="{Binding .}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="16"
-                                                           FontWeight="Bold"
-                                                           Foreground="White"
-                                                           Text="{Binding Column2FullNameDisplay}"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="White"
+                                                           Text="{Binding Column2FullNameDisplay}" TextWrapping="Wrap" />
                                             </Grid>
                                         </Grid>
                                     </Border>
 
-                                    <Border Grid.Column="2"
-                                            BorderBrush="#00167E"
-                                            BorderThickness="1"
-                                            Background="{Binding Column3RowColor}">
+                                    <Border Grid.Column="2" BorderBrush="#00167E" BorderThickness="1" Background="{Binding Column3RowColor}">
                                         <Grid Margin="5">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -343,27 +280,16 @@
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                             <Grid Margin="0,0,0,0">
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Top"
-                                                           FontSize="16"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167e"
-                                                           Text="{Binding Column2IncompleteDisplay}" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"
+                                                           Foreground="#00167e" Text="{Binding Column2IncompleteDisplay}" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    FontSize="16"
-                                                    FontWeight="Bold"
-                                                    Foreground="{Binding Column3FontColor}"
-                                                    Text="{Binding Column3PostalCode}"
-                                                    TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" 
+                                                           Foreground="{Binding Column3FontColor}" Text="{Binding Column3PostalCode}" TextWrapping="Wrap" />
                                             </Grid>
                                         </Grid>
                                     </Border>
 
-                                    <Border Grid.Column="3"
-                                            BorderBrush="#00167E"
-                                            BorderThickness="1">
+                                    <Border Grid.Column="3" BorderBrush="#00167E" BorderThickness="1">
                                         <Grid Margin="5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />
@@ -376,21 +302,11 @@
                                             </Grid.RowDefinitions>
 
                                             <StackPanel>
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="/UserManagement.UI;component/Assets/icon_move.png"
-                                                       Stretch="Fill" />
+                                                <Image Width="25" Height="25" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_move.png" Stretch="Fill" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="10"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167E"
-                                                           Text="Move"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Bold"
+                                                           Foreground="#00167E" Text="Move" TextWrapping="Wrap" />
 
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -401,21 +317,11 @@
                                             </StackPanel>
 
                                             <StackPanel Grid.Row="1">
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="/UserManagement.UI;component/Assets/icon_edit.png"
-                                                       Stretch="Fill" />
+                                                <Image Width="25" Height="25" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_edit.png" Stretch="Fill" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="10"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167E"
-                                                           Text="Edit"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Bold"
+                                                           Foreground="#00167E" Text="Edit" TextWrapping="Wrap" />
 
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -426,21 +332,11 @@
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="1">
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="/UserManagement.UI;component/Assets/icon_flag.png"
-                                                       Stretch="Fill" />
+                                                <Image Width="25" Height="25" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_flag.png" Stretch="Fill" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="10"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167E"
-                                                           Text="Flag"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Bold"
+                                                           Foreground="#00167E" Text="Flag" TextWrapping="Wrap" />
 
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -450,23 +346,12 @@
                                                 </i:Interaction.Triggers>
                                             </StackPanel>
 
-                                            <StackPanel Grid.Row="1"
-                                                        Grid.Column="1">
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="/UserManagement.UI;component/Assets/icon_delete.png"
-                                                       Stretch="Fill" />
+                                            <StackPanel Grid.Row="1" Grid.Column="1">
+                                                <Image Width="25" Height="25" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_delete.png" Stretch="Fill" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="10"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167E"
-                                                           Text="Delete"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Bold"
+                                                           Foreground="#00167E" Text="Delete" TextWrapping="Wrap" />
 
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -478,7 +363,6 @@
                                         </Grid>
                                     </Border>
                                 </Grid>
-
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -524,38 +408,17 @@
                                             BorderThickness="1">
                                         <Grid Margin="1">
                                             <Grid>
-                                                <TextBlock 
-                                                    Text="{Binding Column1TextDisplayOnTop, Mode=OneWay}"
-                                                    FontSize="12"
-                                                    FontWeight="Bold"
-                                                    Foreground="#00167E"/>
+                                                <TextBlock Text="{Binding Column1TextDisplayOnTop, Mode=OneWay}" FontSize="12"
+                                                    FontWeight="Bold" Foreground="#00167E"/>
                                             </Grid>
 
-                                            <Grid Margin="0,2,0,2"
-                                                  VerticalAlignment="Center">
-                                                <Image Width="30"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Left"
-                                                       VerticalAlignment="Center"
-                                                       Source="{Binding Column1DisplayImageLeft}"
-                                                       Stretch="Uniform" />
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center">
-                                                    <Image Width="30" Visibility="{Binding IsColumn1DisplayImageCenterTop, Converter={StaticResource VisibilityConverter}}"
-                                                       Margin="10,0,0,0"
-                                                       Source="{Binding Column1DisplayImageCenterTop}"
-                                                       Stretch="Uniform" />
-                                                    <Image Width="30" Visibility="{Binding IsColumn1DisplayImageCenterBottom, Converter={StaticResource VisibilityConverter}}"
-                                                       Margin="10,0,0,0"
-                                                       Source="{Binding Column1DisplayImageCenterBottom}"
-                                                       Stretch="Uniform" />
-                                                </StackPanel>
-                                                <Image Width="30"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Right"
-                                                       VerticalAlignment="Center"
-                                                       Source="{Binding Column1DisplayImageRight}"
-                                                       Stretch="Uniform" />
+                                            <Grid VerticalAlignment="Stretch">
+                                                <Image Width="50" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageCenter}" Stretch="Uniform"
+                                                       Visibility="{Binding ElementName=MainPage1, Path=DataContext.IsTableVisible, Converter={StaticResource VisibilityConverter}}" />
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"
+                                                           Text="{Binding Column1DisplayTextCenter}" Foreground="#00167E"
+                                                           Style="{StaticResource TableHeaderTextBlockStyle}"/>
                                             </Grid>
                                             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#02FFFFFF">
                                                 <i:Interaction.Triggers>
@@ -568,19 +431,11 @@
                                         </Grid>
                                     </Border>
 
-                                    <Border Grid.Column="1"
-                                            BorderBrush="#00167E"
-                                            Background="{Binding TimeDifferenceColor}"
-                                            BorderThickness="1">
+                                    <Border Grid.Column="1" BorderBrush="#00167E" Background="{Binding TimeDifferenceColor}" BorderThickness="1">
                                         <Grid Margin="1">
                                             <Grid>
-
-                                                <TextBlock HorizontalAlignment="Right"
-                                                           VerticalAlignment="Top"
-                                                           FontSize="14"
-                                                           FontWeight="Bold"
-                                                           Foreground="#ffffff"
-                                                           Text="{Binding Column2NewOrIdrDisplay}">
+                                                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                                                           Foreground="#ffffff" Text="{Binding Column2NewOrIdrDisplay}">
                                                     <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.ArchiveIDCheckedCommand, Mode=OneWay}"
@@ -589,13 +444,8 @@
                                                 </i:Interaction.Triggers>
                                                 </TextBlock>
 
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Right"
-                                                       VerticalAlignment="Top"
-                                                       Source="{Binding Column2IDRDisplayImage}"
-                                                       Stretch="Uniform" />
+                                                <Image Width="25" Height="25" Margin="0" HorizontalAlignment="Right"
+                                                       VerticalAlignment="Top" Source="{Binding Column2IDRDisplayImage}" Stretch="Uniform" />
                                             </Grid>
 
                                             <Grid Margin="0,10,0,0"
@@ -606,21 +456,14 @@
                                                                                CommandParameter="{Binding .}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="16"
-                                                           FontWeight="Bold"
-                                                           Margin="0,10,0,10"
-                                                           Foreground="#ffffff"
-                                                           Text="{Binding Column2FullNameDisplay}"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
+                                                           FontWeight="Bold" Margin="0,10,0,10" Foreground="#ffffff"
+                                                           Text="{Binding Column2FullNameDisplay}" TextWrapping="Wrap" />
                                             </Grid>
                                         </Grid>
                                     </Border>
 
-                                    <Border Grid.Column="2"
-                                            BorderBrush="#00167E"
-                                            BorderThickness="1">
+                                    <Border Grid.Column="2" BorderBrush="#00167E" BorderThickness="1">
                                         <Grid Margin="1">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -629,46 +472,24 @@
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                             <Grid Margin="0,0,0,0">
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Top"
-                                                           FontSize="16"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167e"
-                                                           Text="{Binding Column2IncompleteDisplay}" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"
+                                                           Foreground="#00167e" Text="{Binding Column2IncompleteDisplay}" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="16"
-                                                           FontWeight="Bold"
-                                                           Margin="0,10,0,0"
-                                                           Foreground="{Binding Column3FontColor}"
-                                                           Text="{Binding Column3PostalCode}"
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"
+                                                           Margin="0,10,0,0" Foreground="{Binding Column3FontColor}" Text="{Binding Column3PostalCode}"
                                                            TextWrapping="Wrap" />
                                             </Grid>
                                         </Grid>
                                     </Border>
 
-                                    <Border Grid.Column="3"
-                                            BorderBrush="#00167E"
-                                            BorderThickness="1">
+                                    <Border Grid.Column="3" BorderBrush="#00167E" BorderThickness="1">
                                         <Grid Margin="1">
-                                            <StackPanel HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center">
-                                                <Image Width="30"
-                                                       Height="30"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="/UserManagement.UI;component/Assets/icon_delete.png"
-                                                       Stretch="Fill" />
+                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Image Width="30" Height="30" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_delete.png" Stretch="Fill" />
 
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="10"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167E"
-                                                           Text="Delete"
-                                                           TextWrapping="Wrap" />
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Bold"
+                                                           Foreground="#00167E" Text="Delete" TextWrapping="Wrap" />
 
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -677,12 +498,9 @@
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </StackPanel>
-
-
                                         </Grid>
                                     </Border>
                                 </Grid>
-
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

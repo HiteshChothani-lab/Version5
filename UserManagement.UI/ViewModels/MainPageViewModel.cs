@@ -127,6 +127,8 @@ namespace UserManagement.UI.ViewModels
             this.StoreIDCheckedCommand = new DelegateCommand<StoreUserEntity>(async (user) => await ExecuteStoreIDCheckedCommand(user));
             this.ArchiveIDCheckedCommand = new DelegateCommand<StoreUserEntity>(async (user) => await ExecuteArchiveIDCheckedCommand(user));
             this.UserDetailWindowCommand = new DelegateCommand<StoreUserEntity>((user) => ExecuteUserDetailWindowCommand(user));
+            this.ToggleButtonCommand = new DelegateCommand<string>((item) => ExecuteToggleButtonCommand(item));
+            this.DummyUserCommand = new DelegateCommand(() => ExecuteDummyUserCommand());
 
             #region Pusher Events Subscribe
 
@@ -207,32 +209,73 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _nonMobileUser, value);
         }
 
-        private bool _isCheckedButtonA;
-        public bool IsCheckedButtonA
+        private bool _button1;
+        public bool Button1
         {
-            get => _isCheckedButtonA;
-            set => SetProperty(ref _isCheckedButtonA, value);
+            get => _button1;
+            set => SetProperty(ref _button1, value);
         }
 
-        private bool _isCheckedButtonB;
-        public bool IsCheckedButtonB
+        private bool _button2;
+        public bool Button2
         {
-            get => _isCheckedButtonB;
-            set => SetProperty(ref _isCheckedButtonB, value);
+            get => _button2;
+            set => SetProperty(ref _button2, value);
         }
 
-        private bool _isCheckedButtonC;
-        public bool IsCheckedButtonC
+        private bool _button3;
+        public bool Button3
         {
-            get => _isCheckedButtonC;
-            set => SetProperty(ref _isCheckedButtonC, value);
+            get => _button3;
+            set => SetProperty(ref _button3, value);
         }
 
-        private bool _isCheckedButtonD;
-        public bool IsCheckedButtonD
+        private bool _button4;
+        public bool Button4
         {
-            get => _isCheckedButtonD;
-            set => SetProperty(ref _isCheckedButtonD, value);
+            get => _button4;
+            set => SetProperty(ref _button4, value);
+        }
+
+        private bool _button5;
+        public bool Button5
+        {
+            get => _button5;
+            set => SetProperty(ref _button5, value);
+        }
+
+        private bool _button6;
+        public bool Button6
+        {
+            get => _button6;
+            set => SetProperty(ref _button6, value);
+        }
+
+        private bool _button7;
+        public bool Button7
+        {
+            get => _button7;
+            set => SetProperty(ref _button7, value);
+        }
+
+        private bool _button8;
+        public bool Button8
+        {
+            get => _button8;
+            set => SetProperty(ref _button8, value);
+        }
+
+        private string _otherNumber;
+        public string OtherNumber
+        {
+            get => _otherNumber;
+            set
+            {
+                SetProperty(ref _otherNumber, value);
+
+                if (!string.IsNullOrWhiteSpace(value))
+                    ExecuteToggleButtonCommand("0");
+            }
         }
 
         private bool _canTapAddCommand = true;
@@ -264,6 +307,13 @@ namespace UserManagement.UI.ViewModels
             }
         }
 
+        public string TableNumber { get; set; } = string.Empty;
+
+        public bool IsTableVisible
+        {
+            get => Config.MasterStore.FacilityType.Equals("Restaurant");
+        }
+
         private UserDetailsPage userDetailsPage;
 
         public DelegateCommand NonMobileUserCommand { get; private set; }
@@ -282,6 +332,13 @@ namespace UserManagement.UI.ViewModels
         public DelegateCommand<StoreUserEntity> StoreIDCheckedCommand { get; private set; }
         public DelegateCommand<StoreUserEntity> ArchiveIDCheckedCommand { get; private set; }
         public DelegateCommand<StoreUserEntity> UserDetailWindowCommand { get; private set; }
+        public DelegateCommand<string> ToggleButtonCommand { get; private set; }
+        public DelegateCommand DummyUserCommand { get; private set; }
+
+        private void ExecuteDummyUserCommand()
+        {
+            this.MobileNumber = "0000000000";
+        }
 
         private void ExecuteNonMobileUserCommand()
         {
@@ -290,14 +347,56 @@ namespace UserManagement.UI.ViewModels
             this.RegionManager.RequestNavigate("PopupRegion", ViewNames.NonMobileUserPopup, parameters);
         }
 
+        private void ExecuteToggleButtonCommand(string parameter)
+        {
+            if (string.IsNullOrEmpty(parameter) && !int.TryParse(parameter, out _))
+                return;
+            
+            TableNumber = parameter;
+
+            if (!"0".Equals(parameter))
+                OtherNumber = string.Empty;
+            else
+                TableNumber = string.Empty;
+
+            switch (Convert.ToInt32(parameter))
+            {
+                case 1:
+                    Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 2:
+                    Button1 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 3:
+                    Button1 = Button2 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 4:
+                    Button1 = Button2 = Button3 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 5:
+                    Button1 = Button2 = Button3 = Button4 = Button6 = Button7 = Button8 = false;
+                    break;
+                case 6:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button7 = Button8 = false;
+                    break;
+                case 7:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button8 = false;
+                    break;
+                case 8:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = false;
+                    break;
+                default:
+                    Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+                    break;
+            }
+        }
+
         private async Task ExecuteAddUserCommand()
         {
             this.CanTapAddCommand = false;
-            bool isMobileUser = false;
 
             if (this.NonMobileUser == null)
             {
-                isMobileUser = true;
                 if (string.IsNullOrEmpty(this.FirstName))
                 {
                     MessageBox.Show("First Name is required.", "Required");
@@ -315,9 +414,9 @@ namespace UserManagement.UI.ViewModels
                 }
             }
 
-            if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD)
+            if (string.IsNullOrWhiteSpace(TableNumber) && string.IsNullOrWhiteSpace(OtherNumber))
             {
-                MessageBox.Show("You need to select a reason for visit before an add can be made.", "Required.");
+                MessageBox.Show("Please choice a number or put number in the text box.", "Required.");
                 return;
             }
 
@@ -331,53 +430,21 @@ namespace UserManagement.UI.ViewModels
                 SuperMasterId = Config.MasterStore.UserId
             };
 
-            if (!isMobileUser)
+            if ("0000000000".Equals(this.MobileNumber))
             {
-                reqEntity.Mobile = string.Empty;
                 reqEntity.OrphanStatus = 1;
-                reqEntity.PostalCode = this.NonMobileUser.PostalCode;
-                reqEntity.HomePhone = this.NonMobileUser.HomePhone;
-                reqEntity.Country = this.NonMobileUser.Country;
-                reqEntity.City = this.NonMobileUser.City;
-                reqEntity.State = this.NonMobileUser.State;
-                reqEntity.Gender = this.NonMobileUser.Gender;
-                reqEntity.DOB = this.NonMobileUser.DOB;
             }
             else
             {
-                reqEntity.Mobile = this.MobileNumber;
                 reqEntity.OrphanStatus = 0;
-                reqEntity.PostalCode = string.Empty;
-                reqEntity.HomePhone = string.Empty;
             }
 
+            reqEntity.Mobile = this.MobileNumber;
+            reqEntity.PostalCode = string.Empty;
+            reqEntity.HomePhone = string.Empty;
             reqEntity.DeliverOrderStatus = TotalStoreUsers;
-            reqEntity.FillStatus = 1;
-
-            reqEntity.Button1 = string.Empty;
-            reqEntity.Button2 = string.Empty;
-            reqEntity.Button3 = string.Empty;
-            reqEntity.Button4 = string.Empty;
-
-            if (this.IsCheckedButtonA)
-            {
-                reqEntity.Button1 = "Auto";
-            }
-
-            if (this.IsCheckedButtonB)
-            {
-                reqEntity.Button2 = "Health Science";
-            }
-
-            if (this.IsCheckedButtonD)
-            {
-                reqEntity.Button3 = "Other";
-            }
-
-            if (this.IsCheckedButtonC)
-            {
-                reqEntity.Button4 = "Nature";
-            }
+            //reqEntity.FillStatus = "0000000000".Equals(this.MobileNumber) ? 0 : 1;
+            reqEntity.Button1 = string.IsNullOrWhiteSpace(TableNumber) ? OtherNumber : TableNumber;
 
             SetLoaderVisibility("Adding user...");
             var result = await _windowsManager.SaveUserData(reqEntity, false);
@@ -392,7 +459,7 @@ namespace UserManagement.UI.ViewModels
                 }
                 else
                 {
-                    if ((result.Messagee == "Mobile no doesnot exits!"))
+                    if (result.Messagee == "Mobile no doesnot exits!")
                     {
                         // ask to Register
                         var message = $"Mobile Number: {MobileNumber} not found. {Environment.NewLine} Do you want to register a new user?";
@@ -656,14 +723,14 @@ namespace UserManagement.UI.ViewModels
 
         private void ExecuteEditNonMobileStoreUserCommand(StoreUserEntity user)
         {
-            if (user.OrphanStatus == "1")
-            {
-                _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
-                var parameters = new NavigationParameters();
-                parameters.Add(NavigationConstants.SelectedStoreUser, user);
-                parameters.Add(NavigationConstants.Action, "update_non_mobile");
-                this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
-            }
+            //if (user.OrphanStatus == "1")
+            //{
+            //    _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
+            //    var parameters = new NavigationParameters();
+            //    parameters.Add(NavigationConstants.SelectedStoreUser, user);
+            //    parameters.Add(NavigationConstants.Action, "update_non_mobile");
+            //    this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
+            //}
         }
 
         private void ExecuteEditStoreButtonsCommand(StoreUserEntity user)
@@ -688,14 +755,14 @@ namespace UserManagement.UI.ViewModels
 
         private void ExecuteEditNonMobileArchiveStoreUserCommand(StoreUserEntity user)
         {
-            if (user.OrphanStatus == "1")
-            {
-                _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
-                var parameters = new NavigationParameters();
-                parameters.Add(NavigationConstants.SelectedStoreUser, user);
-                parameters.Add(NavigationConstants.Action, "update_non_mobile_archive");
-                this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
-            }
+            //if (user.OrphanStatus == "1")
+            //{
+            //    _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
+            //    var parameters = new NavigationParameters();
+            //    parameters.Add(NavigationConstants.SelectedStoreUser, user);
+            //    parameters.Add(NavigationConstants.Action, "update_non_mobile_archive");
+            //    this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
+            //}
         }
 
         private void ExecuteUserDetailWindowCommand(StoreUserEntity user)
@@ -851,7 +918,8 @@ namespace UserManagement.UI.ViewModels
             this.FirstName = string.Empty;
             this.LastName = string.Empty;
             this.MobileNumber = string.Empty;
-            this.IsCheckedButtonA = this.IsCheckedButtonB = this.IsCheckedButtonC = this.IsCheckedButtonD = false;
+            Button1 = Button2 = Button3 = Button4 = Button5 = Button6 = Button7 = Button8 = false;
+            OtherNumber = TableNumber = string.Empty;
         }
 
         private async Task GetData()

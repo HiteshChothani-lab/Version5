@@ -12,6 +12,7 @@ namespace UserManagement.Entity
 		public long StoreId { get; set; }
 		public long UserId { get; set; }
 		public string StoreName { get; set; }
+		public string FacilityType { get; set; }
 		public string Phone { get; set; }
 		public string PostalCode { get; set; }
 		public string Address { get; set; }
