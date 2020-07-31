@@ -413,9 +413,9 @@
                                             </Grid>
 
                                             <Grid VerticalAlignment="Stretch">
-                                                <Image Width="50" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                <!--<Image Width="50" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
                                                        Source="{Binding Column1DisplayImageCenter}" Stretch="Uniform"
-                                                       Visibility="{Binding ElementName=MainPage1, Path=DataContext.IsTableVisible, Converter={StaticResource VisibilityConverter}}" />
+                                                       Visibility="{Binding ElementName=MainPage1, Path=DataContext.IsTableVisible, Converter={StaticResource VisibilityConverter}}" />-->
                                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"
                                                            Text="{Binding Column1DisplayTextCenter}" Foreground="#00167E"
                                                            Style="{StaticResource TableHeaderTextBlockStyle}"/>
