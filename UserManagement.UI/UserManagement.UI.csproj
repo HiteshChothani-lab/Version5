@@ -311,14 +311,6 @@
     <Resource Include="Assets\loader.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\science.png" />
-    <Resource Include="Assets\wheel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\nature.png" />
-    <Resource Include="Assets\other.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
