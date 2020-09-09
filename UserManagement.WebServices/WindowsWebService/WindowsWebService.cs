@@ -37,8 +37,7 @@ namespace UserManagement.WebServices
                 $"device_token={reqContract.DeviceToken}&" +
                 $"device_id={reqContract.DeviceId}&" +
                 $"device_type={reqContract.DeviceType}&" +
-                $"facility_type={reqContract.FacilityType}&" +
-                $"timezone={reqContract.TimeZone}";
+                $"facility_type={reqContract.FacilityType}";
 
             var responseTuple = await GetAsync<RegisterMasterStoreResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
@@ -153,7 +152,10 @@ namespace UserManagement.WebServices
 
         public async Task<DefaultResponseContract> ManageUser(ManageUserRequestContract reqContract)
         {
-            string endpoint = $"manage_user.php?action=update_idr_archive&id={reqContract.Id}";
+            string endpoint = $"manage_user.php?" +
+                $"master_store_id={Config.MasterStore.StoreId}&" +
+                $"action=update_idr_archive&" +
+                $"id={reqContract.Id}";
 
             var responseTuple = await GetAsync<DefaultResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
@@ -195,6 +197,7 @@ namespace UserManagement.WebServices
         public async Task<DefaultResponseContract> DeleteArchiveUser(DeleteArchiveUserRequestContract reqContract)
         {
             string endpoint = $"delete_archive.php?" +
+                $"master_store_id={Config.MasterStore.StoreId}&" +
                 $"master_bookstore_id={reqContract.MasterStoreId}&" +
                 $"user_id={reqContract.UserId}&" +
                 $"super_master_id={reqContract.SuperMasterId}&" +
@@ -263,7 +266,8 @@ namespace UserManagement.WebServices
             string endpoint = $"manage_user.php?" +
                 $"id={reqContract.Id}&" +
                 $"user_id={reqContract.UserId}&" +
-               $"super_master_id={reqContract.SuperMasterId}&" +
+                $"super_master_id={reqContract.SuperMasterId}&" +
+                $"master_store_id={Config.MasterStore.SuperMasterId}&" +
                 $"action={reqContract.Action}&" +
                 $"btn1={reqContract.Button1}&" +
                 $"btn2={reqContract.Button2}&" +
@@ -286,6 +290,7 @@ namespace UserManagement.WebServices
         {
             string endpoint = $"manage_user.php?action=move&" +
                 $"moved_pos_oid={reqContract.MovedPosOid}&" +
+                $"master_store_id={Config.MasterStore.StoreId}&" +
                 $"mid={reqContract.Mid}&" +
                 $"order_id={reqContract.OrderId}&" +
                 $"moved_id={reqContract.MovedId}&" +

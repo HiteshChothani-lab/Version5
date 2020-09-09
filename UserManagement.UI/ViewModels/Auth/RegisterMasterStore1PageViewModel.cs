@@ -106,20 +106,6 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _postalCodeText, value);
         }
 
-        private TimeZoneInfo _selectedTimeZone;
-        public TimeZoneInfo SelectedTimeZone
-        {
-            get => _selectedTimeZone;
-            set => SetProperty(ref _selectedTimeZone, value);
-        }
-
-        private List<TimeZoneInfo> _timeZones;
-        public List<TimeZoneInfo> TimeZones
-        {
-            get => _timeZones;
-            set => SetProperty(ref _timeZones, value);
-        }
-
         private List<FacilityType> _facilityTypes;
         public List<FacilityType> FacilityTypes
         {
@@ -184,8 +170,6 @@ namespace UserManagement.UI.ViewModels
                 this.MasterStore.City = this.SelectedCity;
                 this.MasterStore.State = this.SelectedState;
                 this.MasterStore.PostalCode = this.PostalCode;
-                this.MasterStore.TimeZone = this.SelectedTimeZone.BaseUtcOffset.ToString();
-                this.MasterStore.TimeZoneDisplayName = $"{this.SelectedTimeZone.BaseUtcOffset.ToString()} {this.SelectedTimeZone.StandardName}";
                 MasterStore.FacilityType = SelectedFacilityType.Value;
 
                 parameters.Add(NavigationConstants.MasterStoreModel, this.MasterStore);
@@ -218,12 +202,6 @@ namespace UserManagement.UI.ViewModels
                 var cities = _locationManager.GetCities();
                 this.Cities = cities.Where(x => x.StateId == this.SelectedState.Id).ToList();
                 this.SelectedCity = this.Cities.FirstOrDefault();
-            }
-
-            if (this.TimeZones == null)
-            {
-                this.TimeZones = TimeZoneInfo.GetSystemTimeZones().ToList();
-                this.SelectedTimeZone = this.TimeZones.FirstOrDefault(s => s.Id == TimeZone.CurrentTimeZone.StandardName);
             }
 
             if (navigationContext.Parameters.Any(x => x.Key == NavigationConstants.MasterStoreModel))
