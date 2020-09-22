@@ -43,7 +43,7 @@
                     <Button Margin="0,0,2,0" Command="{Binding AddUserCommand}" Content="ADD" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="4">
-                    <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="14" Command="{Binding DummyUserCommand}" Content="Dummy Reference"
+                    <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="14" Command="{Binding DummyUserCommand}" Content="Fill in"
                         Style="{StaticResource RoundButtonStyle}" />
                 </Grid>
 
